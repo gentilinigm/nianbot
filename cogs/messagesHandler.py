@@ -4,7 +4,7 @@ import asyncio
 from discord.ext import commands
 from utils import dataIO, permissions
 
-confirmation_message = 'schwellagur'
+#confirmation_message = 'schwellagur'
 
 # todo!important better way to increase separately commands counter and messages counter
 # dynamic confirmation. message?
@@ -38,6 +38,7 @@ class messagesHandler(commands.Cog):
         if not self.bot.is_ready() or msg.author.bot or isinstance(msg.channel, discord.channel.DMChannel):
             return
 
+        """
         if msg.channel.id == 713743319448027317:
             m = None
             if not any(r.id == 713745424690970686 for r in msg.author.roles):
@@ -56,8 +57,8 @@ class messagesHandler(commands.Cog):
             except Exception as e:
                 print(e)
             return
-
-        elif msg.channel.id == 735536183043424287:
+        """
+        if msg.channel.id == 735536183043424287:
             self.answers_counter += 1
             if self.answers_counter == 30:
                 await self.bot.iw.resend_question()

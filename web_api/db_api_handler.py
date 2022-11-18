@@ -44,7 +44,8 @@ class dbApiH:
             "joined_at": user.joined_at,
             "messages_sent": 0,
             "commands_used": 0,
-            "strikes": 0
+            "strikes": 0,
+            "nicknames": []
         } for user in users], ordered=False)
 
     def add_user(self, user):
@@ -54,7 +55,8 @@ class dbApiH:
             "joined_at": user.joined_at,
             "messages_sent": 0,
             "commands_used": 0,
-            "strikes": 0
+            "strikes": 0,
+            "nicknames": []
         })
 
     def get_alarmed_users(self):
@@ -65,6 +67,12 @@ class dbApiH:
 
     def update_user_name_by_id(self, id, new_name):
         self.db["users"].update_one({"_id": id}, {"$set": {"name": new_name}})
+        
+    def update_user_nicknames_by_id(self, id, old_nick):
+        self.db["users"].update_one({"_id": id}, {"$addToSet": {"nicknames": old_nick}})
+        
+    def get_user_nicknames_by_id(self, id):
+        return self.db["users"].find_one({"_id": id})["nicknames"]
 
     def alarm_user_by_id(self, id):
         self.db["users"].update_one({"_id": id}, {"$inc": {"strikes": 1}})

@@ -12,12 +12,16 @@ class eventsHandler(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         no_faction = member.guild.get_role(self.config.faction_roles[-1])
+        #newcommer = member.guild.get_role(713745424690970686)
+
 
         try:
             if self.bot.ww.dbh.get_document_by_id("users", member.id) is None:
                 self.bot.ww.dbh.add_user(member)
-            await member.add_roles(no_faction, member.guild.get_role(713745424690970686))
-
+            #await member.add_roles(no_faction, newcommer)
+            await member.add_roles(no_faction)
+            
+            """
             embed = discord.Embed(title=f"Welcome to KyoStinV Server {member.name} ",
                                   description="This is a To-Do-List to unlock all chat channel \n"
                                               "- first go to the #rules read them \n"
@@ -31,6 +35,7 @@ class eventsHandler(commands.Cog):
             await member.dm_channel.send(embed=embed)
         except discord.errors.Forbidden:
             print(f"Failed to send welcome message to {member.name} ")
+        """
         except Exception as e:
             print(e)
 
@@ -50,6 +55,9 @@ class eventsHandler(commands.Cog):
             await self.bot.log_channel.send(f'```❗{after} HAS BEEN MUTED```')
         elif muted_role in before.roles and muted_role not in after.roles:
             await self.bot.log_channel.send(f'```❗{after} HAS BEEN UNMUTED```')
+            
+        if before.nick != after.nick:
+            self.bot.ww.dbh.update_user_nicknames_by_id(after.id, before.nick)
 
     @commands.Cog.listener()
     async def on_user_update(self, before, after):

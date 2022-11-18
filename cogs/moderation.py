@@ -52,6 +52,7 @@ class Moderation(commands.Cog):
         self.bot = bot
         self.config = dataIO.get_Info("config.json")
 
+     
     async def check_status(self, ctx, member, reason:str = None):
         user = self.bot.ww.dbh.get_alarmed_user_by_id(member.id)
 
@@ -202,7 +203,7 @@ class Moderation(commands.Cog):
             print(e)
             await ctx.send(
                 f'I don\'t have permission to {ctx.command} {member.nick if member.nick is not None else member.display_name}')
-
+    
     @commands.command(
         name='ban',
         help=' Bans a member. !all his messages wil be cancelled',
@@ -248,7 +249,7 @@ class Moderation(commands.Cog):
                     f'use id'
                 )
     '''
-
+         
     @commands.command(
         name='softban',
         help=' Softbans a member. !you **MUST** use the member\'s ID',
@@ -408,7 +409,8 @@ class Moderation(commands.Cog):
         await utils.prettyResults(
             ctx, "discriminator", f"Found **{len(loop)}** on your search for **{search}**", loop
         )
-
+    
+    
     @commands.group(
         name='reset',
         help='resets videos and tweets in the db',
@@ -468,7 +470,7 @@ class Moderation(commands.Cog):
     )
     async def _full_reset_tweets(self, ctx):
         await self.bot.ww.reset(name='tweets', type='full')
-
+     
     @commands.group(
         name='clear',
         help='Removes messages within your conditions',
@@ -621,7 +623,8 @@ class Moderation(commands.Cog):
             await m.delete()
         except:
             pass
-
+    
+    
     @commands.command(
         name='pickaquestion',
         help='Picks a question, resets the timer',
@@ -631,6 +634,7 @@ class Moderation(commands.Cog):
     @permissions.is_mod()
     async def _pickaquestion(self, ctx):
         await self.bot.iw.send_question()
+
 
     @commands.command(  # move this up
         name='role',
@@ -683,7 +687,30 @@ class Moderation(commands.Cog):
             await selected_member.remove_roles(selected_role)
         except Exception as e:
             print(e)
+            
+    
+    @commands.command(
+        name='nicknamesof',
+        help='list the previous nicknames of an user',
+        description='the nick command!',
+        aliases=["prevnicks", "nicksof"]
+    )
+    @permissions.is_lil_mod()
+    async def _nicknamesof(self, ctx, member: MemberID):
+        try:
+            nicknames = self.bot.ww.dbh.get_user_nicknames_by_id(member)
+            
+            if not nicknames: 
+                raise Exception()
+            
+            await utils.prettyResults(
+                ctx, "nicknames", f"Found **{len(nicknames)}** results", nicknames
+            )
+        except Exception as e:
+            print(e)
+            await ctx.send("No records found")
 
-
+    
+    
 def setup(bot):
     bot.add_cog(Moderation(bot))
