@@ -1,9 +1,3 @@
-#temporary avoid docx files (will move soon)
-*.docx
-
-#temporary avoid path.txt file
-path.txt
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,13 @@
+debug:     !ENV ["BOT_DEBUG", "true"]
+
+
+bot:
+  prefix:   ">>"
+  token:    !ENV "BOT_TOKEN"
+
+guild:
+  id:       684039093927280664
+  invite:   "https://discord.gg/kyostinv"
+
+config:
+    required_keys: ["bot.token"]
