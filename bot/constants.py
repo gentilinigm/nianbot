@@ -187,3 +187,14 @@ class Guild(metaclass=YAMLGetter):
     section = "guild"
 
     id: int
+
+
+class Database(metaclass=YAMLGetter):
+    section = "database"
+
+    dbname: str
+    database: str
+    user: str
+    password: str
+    host: str
+    port: int

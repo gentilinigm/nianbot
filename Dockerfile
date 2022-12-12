@@ -1,4 +1,10 @@
-FROM --platform=linux/amd64 ghcr.io/chrislovering/python-poetry-base:3.10-slim
+FROM python:3.10-slim
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install python3-dev libpq-dev build-essential -y
+
+RUN pip install poetry
 
 # Install project dependencies
 WORKDIR /bot
