@@ -202,7 +202,10 @@ class WebWorker:
                 if videos is not None and 0 < len(videos) < 10:
                     print('[*]sending youtube videos...')
                     for video in reversed(videos):
-                        await self.bot.videos_channel.send(f'New video!\n{youtube_search_url}{video["id"]}')
+                        msg = f'New video!\n{youtube_search_url}{video["id"]}'
+                        await self.bot.videos_channel_std.send(msg)
+                        if "genshin" in video["title"].lower():
+                            await self.bot.videos_channel_genshin.send(msg)
                 elif len(videos) > 10:
                     raise Exception('ERROR retrieving new channel videos')
                 else:

@@ -36,8 +36,11 @@ class NianBot(AutoShardedBot):
         if not hasattr(self, 'warn_channel'):
             self.warn_channel = self.get_channel(727460706072526858)
 
-        if not hasattr(self, 'videos_channel'):
-            self.videos_channel = self.get_channel(684040996581015572)
+        if not hasattr(self, 'videos_channel_std'):
+            self.videos_channel_std = self.get_channel(684040996581015572)
+
+        if not hasattr(self, 'videos_channel_genshin'):
+            self.videos_channel_genshin = self.get_channel(764419321841057792)
 
         #if not hasattr(self, 'news_channel'):
             #self.news_channel = self.get_channel(684405119840026734)
