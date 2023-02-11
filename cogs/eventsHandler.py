@@ -66,7 +66,7 @@ class eventsHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-        if payload.channel_id != 823543706737049605:
+        if payload.channel_id != 1073995608572039209:
             return
 
         member = payload.member
@@ -98,7 +98,7 @@ class eventsHandler(commands.Cog):
             elif payload.emoji.name == underage_emoji_name:  # we need to check the name here (?)
                 role_to_add = guild.get_role(underage_role_id)
 
-        if payload.message_id == 884754266902921218:
+        if payload.message_id == 884754266902921218: #??
             role_to_add = guild.get_role(877197372239802389)
 
         if role_to_add is not None:
@@ -109,7 +109,7 @@ class eventsHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload):
-        if payload.channel_id != 823543706737049605:
+        if payload.channel_id != 1073995608572039209:
             return
 
         guild = self.bot.get_guild(payload.guild_id)
@@ -141,7 +141,7 @@ class eventsHandler(commands.Cog):
             elif payload.emoji.name == underage_emoji_name:  # we need to check the name here (?)
                 role_to_remove = guild.get_role(underage_role_id)
 
-        if payload.message_id == 884754266902921218:
+        if payload.message_id == 884754266902921218: #??
             role_to_remove = guild.get_role(877197372239802389)
 
         if role_to_remove is not None:
