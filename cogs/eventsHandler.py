@@ -10,6 +10,18 @@ class eventsHandler(commands.Cog):
         self.bot = bot
         self.config = dataIO.get_Info("config.json")
 
+        self.ak_emoji_id = 685150420032946236
+        self.gn_emoji_id = 893900481649319976
+        self.other_games_emoji_id = 691741131360174160
+        self.general_emoji_id = 799657215933677578
+        self.underage_emoji_name = "🔞"
+
+        self.ak_role_id = 1074345356231454773
+        self.gn_role_id = 1074345296093524049
+        self.other_games_role_id = 1074345494081458237
+        self.general_role_id = 1074345448615202846
+        self.underage_role_id = 1074345416650391692
+
     @commands.Cog.listener()
     async def on_member_join(self, member):
         no_faction = member.guild.get_role(self.config.faction_roles[-1])
@@ -74,29 +86,17 @@ class eventsHandler(commands.Cog):
 
         role_to_add = None
 
-        ak_emoji_id = 685150420032946236
-        gn_emoji_id = 893900481649319976
-        other_games_emoji_id = 691741131360174160
-        general_emoji_id = 799657215933677578
-        underage_emoji_name = "🔞"
-
-        ak_role_id = 1074006500596518962
-        gn_role_id = 1074006573996855307
-        other_games_role_id = 1074012199808417822
-        general_role_id = 1074006780687945778
-        underage_role_id = 1074006669601808404
-
         if payload.message_id == 1074025916742770768:
-            if payload.emoji.id == ak_emoji_id:
-                role_to_add = guild.get_role(ak_role_id)
-            elif payload.emoji.id == gn_emoji_id:
-                role_to_add = guild.get_role(gn_role_id)
-            elif payload.emoji.id == other_games_emoji_id:
-                role_to_add = guild.get_role(other_games_role_id)
-            elif payload.emoji.id == general_emoji_id:
-                role_to_add = guild.get_role(general_role_id)
-            elif payload.emoji.name == underage_emoji_name:  # we need to check the name here (?)
-                role_to_add = guild.get_role(underage_role_id)
+            if payload.emoji.id == self.ak_emoji_id:
+                role_to_add = guild.get_role(self.ak_role_id)
+            elif payload.emoji.id == self.gn_emoji_id:
+                role_to_add = guild.get_role(self.gn_role_id)
+            elif payload.emoji.id == self.other_games_emoji_id:
+                role_to_add = guild.get_role(self.other_games_role_id)
+            elif payload.emoji.id == self.general_emoji_id:
+                role_to_add = guild.get_role(self.general_role_id)
+            elif payload.emoji.name == self.underage_emoji_name:  # we need to check the name here (?)
+                role_to_add = guild.get_role(self.underage_role_id)
 
         if payload.message_id == 884754266902921218: #??
             role_to_add = guild.get_role(877197372239802389)
@@ -117,29 +117,17 @@ class eventsHandler(commands.Cog):
 
         role_to_remove = None
 
-        ak_emoji_id = 685150420032946236
-        gn_emoji_id = 893900481649319976
-        other_games_emoji_id = 691741131360174160
-        general_emoji_id = 799657215933677578
-        underage_emoji_name = "🔞"
-
-        ak_role_id = 1074006500596518962
-        gn_role_id = 1074006573996855307
-        other_games_role_id = 1074012199808417822
-        general_role_id = 1074006780687945778
-        underage_role_id = 1074006669601808404
-
         if payload.message_id == 1074025916742770768:
-            if payload.emoji.id == ak_emoji_id:
-                role_to_remove = guild.get_role(ak_role_id)
-            elif payload.emoji.id == gn_emoji_id:
-                role_to_remove = guild.get_role(gn_role_id)
-            elif payload.emoji.id == other_games_emoji_id:
-                role_to_remove = guild.get_role(other_games_role_id)
-            elif payload.emoji.id == general_emoji_id:
-                role_to_remove = guild.get_role(general_role_id)
-            elif payload.emoji.name == underage_emoji_name:  # we need to check the name here (?)
-                role_to_remove = guild.get_role(underage_role_id)
+            if payload.emoji.id == self.ak_emoji_id:
+                role_to_remove = guild.get_role(self.ak_role_id)
+            elif payload.emoji.id == self.gn_emoji_id:
+                role_to_remove = guild.get_role(self.gn_role_id)
+            elif payload.emoji.id == self.other_games_emoji_id:
+                role_to_remove = guild.get_role(self.other_games_role_id)
+            elif payload.emoji.id == self.general_emoji_id:
+                role_to_remove = guild.get_role(self.general_role_id)
+            elif payload.emoji.name == self.underage_emoji_name:  # we need to check the name here (?)
+                role_to_remove = guild.get_role(self.underage_role_id)
 
         if payload.message_id == 884754266902921218: #??
             role_to_remove = guild.get_role(877197372239802389)
