@@ -22,11 +22,13 @@ class eventsHandler(commands.Cog):
         self.bot = bot
         self.config = dataIO.get_Info("config.json")
 
-        ak_role = self.bot.main_guild.get_role(ak_role_id)
-        gn_role = self.bot.main_guild.get_role(gn_role_id)
-        other_games_role = self.bot.main_guild.get_role(other_games_role_id)
-        general_role = self.bot.main_guild.get_role(general_role_id)
-        underage_role = self.bot.main_guild.get_role(underage_role_id)
+        guild = self.bot.get_guild(684039093927280664)
+
+        ak_role = guild.get_role(ak_role_id)
+        gn_role = guild.get_role(gn_role_id)
+        other_games_role = guild.get_role(other_games_role_id)
+        general_role = guild.get_role(general_role_id)
+        underage_role = guild.get_role(underage_role_id)
 
         self.roles_map = {
             ak_emoji_id: ak_role,
