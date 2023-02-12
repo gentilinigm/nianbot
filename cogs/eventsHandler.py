@@ -22,7 +22,9 @@ class eventsHandler(commands.Cog):
         self.bot = bot
         self.config = dataIO.get_Info("config.json")
 
-        guild = self.bot.get_guild(684039093927280664)
+        print(bot)
+
+        guild = bot.get_guild(684039093927280664)
 
         ak_role = guild.get_role(ak_role_id)
         gn_role = guild.get_role(gn_role_id)
