@@ -10,18 +10,6 @@ class eventsHandler(commands.Cog):
         self.bot = bot
         self.config = dataIO.get_Info("config.json")
 
-        self.ak_emoji_id = 685150420032946236
-        self.gn_emoji_id = 893900481649319976
-        self.other_games_emoji_id = 691741131360174160
-        self.general_emoji_id = 799657215933677578
-        self.underage_emoji_name = "🔞"
-
-        self.ak_role_id = 1074345356231454773
-        self.gn_role_id = 1074345296093524049
-        self.other_games_role_id = 1074345494081458237
-        self.general_role_id = 1074345448615202846
-        self.underage_role_id = 1074345416650391692
-
     @commands.Cog.listener()
     async def on_member_join(self, member):
         no_faction = member.guild.get_role(self.config.faction_roles[-1])
@@ -78,65 +66,11 @@ class eventsHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-        if payload.channel_id != 1073995608572039209:
-            return
-
-        member = payload.member
-        guild = member.guild
-
-        role_to_add = None
-
-        if payload.message_id == 1074025916742770768:
-            if payload.emoji.id == self.ak_emoji_id:
-                role_to_add = guild.get_role(self.ak_role_id)
-            elif payload.emoji.id == self.gn_emoji_id:
-                role_to_add = guild.get_role(self.gn_role_id)
-            elif payload.emoji.id == self.other_games_emoji_id:
-                role_to_add = guild.get_role(self.other_games_role_id)
-            elif payload.emoji.id == self.general_emoji_id:
-                role_to_add = guild.get_role(self.general_role_id)
-            elif payload.emoji.name == self.underage_emoji_name:  # we need to check the name here (?)
-                role_to_add = guild.get_role(self.underage_role_id)
-
-        if payload.message_id == 884754266902921218: #??
-            role_to_add = guild.get_role(877197372239802389)
-
-        if role_to_add is not None:
-            await member.add_roles(role_to_add)
-            print(f'{member.name} joined {role_to_add.name}')
-        else:
-            print(f'{member.name} attempted to join an invalid role')
+        pass  # using dyno now
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload):
-        if payload.channel_id != 1073995608572039209:
-            return
-
-        guild = self.bot.get_guild(payload.guild_id)
-        member = guild.get_member(payload.user_id)
-
-        role_to_remove = None
-
-        if payload.message_id == 1074025916742770768:
-            if payload.emoji.id == self.ak_emoji_id:
-                role_to_remove = guild.get_role(self.ak_role_id)
-            elif payload.emoji.id == self.gn_emoji_id:
-                role_to_remove = guild.get_role(self.gn_role_id)
-            elif payload.emoji.id == self.other_games_emoji_id:
-                role_to_remove = guild.get_role(self.other_games_role_id)
-            elif payload.emoji.id == self.general_emoji_id:
-                role_to_remove = guild.get_role(self.general_role_id)
-            elif payload.emoji.name == self.underage_emoji_name:  # we need to check the name here (?)
-                role_to_remove = guild.get_role(self.underage_role_id)
-
-        if payload.message_id == 884754266902921218: #??
-            role_to_remove = guild.get_role(877197372239802389)
-
-        if role_to_remove is not None:
-            await member.remove_roles(role_to_remove)
-            print(f'{member.name} joined {role_to_remove.name}')
-        else:
-            print(f'{member.name} attempted to leave an invalid role')
+        pass  # using dyno now
 
 
 def setup(bot):
