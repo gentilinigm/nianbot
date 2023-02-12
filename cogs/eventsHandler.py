@@ -4,43 +4,11 @@ from utils import dataIO
 
 _cd = commands.CooldownMapping.from_cooldown(1.0, 60.0, commands.BucketType.member)
 
-ak_emoji_id = 685150420032946236
-gn_emoji_id = 893900481649319976
-other_games_emoji_id = 691741131360174160
-general_emoji_id = 799657215933677578
-underage_emoji_name = "🔞"
-
-ak_role_id = 1074345356231454773
-gn_role_id = 1074345296093524049
-other_games_role_id = 1074345494081458237
-general_role_id = 1074345448615202846
-underage_role_id = 1074345416650391692
-
 
 class eventsHandler(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = dataIO.get_Info("config.json")
-
-        print(bot)
-
-        guild = bot.get_guild(684039093927280664)
-
-        ak_role = guild.get_role(ak_role_id)
-        gn_role = guild.get_role(gn_role_id)
-        other_games_role = guild.get_role(other_games_role_id)
-        general_role = guild.get_role(general_role_id)
-        underage_role = guild.get_role(underage_role_id)
-
-        self.roles_map = {
-            ak_emoji_id: ak_role,
-            gn_emoji_id: gn_role,
-            other_games_emoji_id: other_games_role,
-            general_emoji_id: general_role,
-            underage_emoji_name: underage_role
-        }
-
-        print(self.roles_map)
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
@@ -97,40 +65,12 @@ class eventsHandler(commands.Cog):
             self.bot.ww.dbh.update_user_name_by_id(after.id, after.name)
 
     @commands.Cog.listener()
-    async def on_reaction_add(self, reaction, user):
-        if reaction.message.channel.id != 1073995608572039209 or reaction.message.id != 1074377698681573446:
-            return
-
-        emoji_id = reaction.emoji.id
-
-        print(emoji_id)
-
-        if emoji_id in self.roles_map:
-            user.add_roles(self.roles_map[emoji_id])
-            print(f'{user.name} joined {self.roles_map[emoji_id].name}')
-        else:
-            print(f'{user.name} could not join the role {emoji_id}, something went wrong')
-
-    @commands.Cog.listener()
-    async def on_reaction_remove(self, reaction, user):
-        if reaction.message.channel.id != 1073995608572039209 or reaction.message.id != 1074377698681573446:
-            return
-
-        emoji_id = reaction.emoji.id
-
-        if emoji_id in self.roles_map:
-            user.remove_roles(self.roles_map[emoji_id])
-            print(f'{user.name} left {self.roles_map[emoji_id].name}')
-        else:
-            print(f'{user.name} could not leave the role {emoji_id}, something went wrong')
-
-    @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-        pass  # will use in the future
+        pass  # using dyno now
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload):
-        pass  # will use in the future
+        pass  # using dyno now
 
 
 def setup(bot):
