@@ -34,11 +34,10 @@ def _env_var_constructor(loader, node):
         application:
             key: !ENV 'MY_APP_KEY'
     """
-
     default = None
 
     # Check if the node is a plain string value
-    if node.id == 'scalar':
+    if node.id == "scalar":
         value = loader.construct_scalar(node)
         key = str(value)
     else:
@@ -68,7 +67,6 @@ def _recursive_update(original, new):
     method, used for updating the original configuration with
     configuration specified by the user.
     """
-
     for key, value in original.items():
         if key not in new:
             continue
@@ -96,7 +94,7 @@ def check_required_keys(keys):
     for key_path in keys:
         lookup = _CONFIG_YAML
         try:
-            for key in key_path.split('.'):
+            for key in key_path.split("."):
                 lookup = lookup[key]
                 if lookup is None:
                     raise KeyError(key)
@@ -108,7 +106,7 @@ def check_required_keys(keys):
 
 
 try:
-    required_keys = _CONFIG_YAML['config']['required_keys']
+    required_keys = _CONFIG_YAML["config"]["required_keys"]
 except KeyError:
     pass
 else:
@@ -159,7 +157,7 @@ class YAMLGetter(type):
                 return _CONFIG_YAML[cls.section][cls.subsection][name]
             return _CONFIG_YAML[cls.section][name]
         except KeyError as e:
-            dotted_path = '.'.join(
+            dotted_path = ".".join(
                 (cls.section, cls.subsection, name)
                 if cls.subsection is not None else (cls.section, name)
             )
