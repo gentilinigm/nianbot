@@ -2,7 +2,7 @@
 name = "nianbot"
 version = "2.0.0"
 description = "The Discord Bot for the KyoStinV official Discord Server."
-authors = ["gian <@gian@2222>"]
+authors = ["gian <@0xgian"]
 
 [tool.poetry.dependencies]
 python = "3.10.*"
@@ -36,17 +36,17 @@ pydantic-settings = "2.0.3"
 
 
 [tool.poetry.dev-dependencies]
-coverage = "7.2.3"
-httpx = "0.24.0"
+coverage = "7.3.1"
+httpx = "0.25.0"
 isort = "5.12.0"
-pre-commit = "3.2.2"
-pip-licenses = "4.1.0"
-pytest = "7.3.0"
-pytest-cov = "4.0.0"
-pytest-subtests = "0.10.0"
-pytest-xdist = "3.2.1"
-ruff = "0.0.263"
-taskipy = "1.10.4"
+pre-commit = "3.4.0"
+pip-licenses = "4.3.3"
+pytest = "7.4.2"
+pytest-cov = "4.1.0"
+pytest-subtests = "0.11.0"
+pytest-xdist = "3.3.1"
+ruff = "0.0.290"
+taskipy = "1.12.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -56,8 +56,8 @@ build-backend = "poetry.core.masonry.api"
 start = "python -m bot"
 lint = "pre-commit run --all-files"
 precommit = "pre-commit install"
-build = "docker build -t ghcr.io/gentilinigian/nianbot:latest -f Dockerfile ."
-push = "docker push ghcr.io/gentilinigian/nianbot:latest"
+build = "docker build -t ghcr.io/gentilinigm/nianbot:latest -f Dockerfile ."
+push = "docker push ghcr.io/gentilinigm/nianbot:latest"
 test-nocov = "pytest -n auto"
 test = "pytest -n auto --cov-report= --cov --ff"
 retest = "pytest -n auto --cov-report= --cov --lf"
