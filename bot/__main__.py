@@ -5,17 +5,17 @@ import discord
 import psycopg2
 from discord.ext import commands
 from psycopg2 import DatabaseError
+from psycopg2.extensions import connection
 
 import bot
 from bot import constants
 from bot.bot import Bot, StartupError
 
 
-async def _create_db_connection() -> psycopg2:
+async def _create_db_connection() -> connection:
     try:
         conn = psycopg2.connect(
             dbname=constants.Database.dbname,
-            database=constants.Database.database,
             user=constants.Database.user,
             password=constants.Database.password,
             host=constants.Database.host,
@@ -48,9 +48,9 @@ async def main() -> None:
 
 try:
     asyncio.run(main())
-except StartupError as e:
+except StartupError:
     message = "Unknown Startup Error Occurred."
 
-    print(e.exception)
+    # print(e.exception)
 
     exit(1)

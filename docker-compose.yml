@@ -2,24 +2,20 @@
 
 version: "3.7"
 
-x-logging: &logging
-  logging:
-    driver: "json-file"
-    options:
-      max-file: "5"
-      max-size: "10m"
-
-x-restart-policy: &restart_policy
-  restart: unless-stopped
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-file: "5"
+    max-size: "10m"
 
 services:
-  db:
-    << : *logging
-    << : *restart_policy
+  postgres:
+    logging: *default-logging
+    restart: unless-stopped
     image: postgres:15-alpine
     volumes:
       - db-data:/var/lib/postgresql/data
-      #- ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       POSTGRES_DB: nian
       POSTGRES_PASSWORD: nian
@@ -35,8 +31,8 @@ services:
       retries: 5
 
   bot:
-    << : *logging
-    << : *restart_policy
+    logging: *default-logging
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
@@ -44,9 +40,11 @@ services:
       - .:/bot:ro
     tty: true
     depends_on:
-      - db
+      - postgres
     env_file:
       - .env
+    environment:
+      - DATABASE_HOST=postgres
 
 volumes:
   db-data:

@@ -354,7 +354,6 @@ Webhooks = _Webhooks()
 class _Database(EnvConfig, env_prefix="database_"):
 
     dbname: str
-    database: str
     user: str
     password: str
     host: str
