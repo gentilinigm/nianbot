@@ -1,4 +1,5 @@
 import asyncio
+import logging
 
 import aiohttp
 import discord
@@ -48,9 +49,13 @@ async def main() -> None:
 
 try:
     asyncio.run(main())
-except StartupError:
+except StartupError as e:
     message = "Unknown Startup Error Occurred."
 
-    # print(e.exception)
+    if isinstance(e.exception, DatabaseError):
+        message = "Could not connect to postgresql"
+
+    logging.fatal(e.exception)
+    logging.fatal(message)
 
     exit(1)
