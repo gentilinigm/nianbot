@@ -46,6 +46,10 @@ Bot = _Bot()
 
 class _Channels(EnvConfig, env_prefix="channels_"):
 
+    # |---------------------------| #
+    # |           TEXT            | #
+    # |---------------------------| #
+
     # Announcement
     welcome: int = 684040618196074522
     rules: int = 696333834697965618
@@ -133,6 +137,7 @@ class _Channels(EnvConfig, env_prefix="channels_"):
     # Music
     music_jockie: int = 684046563219341368
     music_pancake: int = 882658387546996806
+    music_luna: int = 1145015042853584957
 
     # Outside-The-City
     outside_the_city: int = 951135069353947156
@@ -153,14 +158,16 @@ class _Channels(EnvConfig, env_prefix="channels_"):
     warn_ban: int = 727460706072526858
 
     # Dev
+    category_bot_dev: int = 743076582796689409
     github_updates: int = 1042183714312028250
     general_discussion: int = 1042187126743248936
     dev: int = 1042187126743248936
     testing_1: int = 743426792723054672
     testing_2: int = 743077096506523659
 
-
-    # -----------VOICE----------- #
+    # |---------------------------| #
+    # |           VOICE           | #
+    # |---------------------------| #
 
     # Community-Content
     nightcats_domain: int = 696349492135591986
@@ -192,13 +199,13 @@ class _Channels(EnvConfig, env_prefix="channels_"):
 Channels = _Channels()
 
 
-class _Roles(EnvConfig, env_prefix = "roles_"):
+class _Roles(EnvConfig, env_prefix="roles_"):
 
     # Staff
     my_husband: int = 691248301529497671
     administrator: int = 684039437482590229
     moderator: int = 684797230758363137
-    sub_mod: int = 703187683429842985
+    sub_moderator: int = 703187683429842985
 
     # Assignable
     true_traveler_simp: int = 835845564008366121
@@ -295,6 +302,7 @@ class _Categories(EnvConfig, env_prefix="categories_"):
 
     announcement: int = 684040094528700502
     general_talks: int = 696370842325745716
+    ak_general: int = 1074325307991007342
     ak_social_hub: int = 1074325438677123143
     ak_help: int = 1074325613738999878
     genshin_impact: int = 758366635849154570
@@ -321,15 +329,83 @@ class _Guild(EnvConfig, env_prefix="guild_"):
     moderation_categories: tuple[int, ...] = (
         Categories.logs,
     )
+    arknights_categories: tuple[int, ...] = (
+        Categories.ak_general,
+        Categories.ak_help,
+        Categories.ak_social_hub,
+    )
+    genshin_categories: tuple[int, ...] = (
+        Categories.genshin_impact,
+    )
+
     moderation_channels: tuple[int, ...] = ()
+
     modlog_blacklist: tuple[int, ...] = (
         Channels.log,
         Channels.message_log,
         Channels.automod_logs,
         Channels.message_log,
         Channels.warn_ban,
+        Channels.bot_spam,
+        Channels.spam,
     )
-    staff_roles: tuple[int, ...] = (Roles.administrator, Roles.moderator, Roles.sub_mod, Roles.my_husband,)
+
+    staff_roles: tuple[int, ...] = (
+        Roles.administrator,
+        Roles.moderator,
+        Roles.sub_moderator,
+        Roles.my_husband,
+    )
+
+    faction_roles: tuple[int, ...] = (
+        Roles.rhodes_island,
+        Roles.glasgow,
+        Roles.lungmen,
+        Roles.rhine_lab,
+        Roles.abyssal_hunters,
+        Roles.penguin_logistics,
+        Roles.karlan_commercials,
+        Roles.blacksteel_worldwide,
+        Roles.ursus_government,
+        Roles.reunion,
+    )
+
+    simp_roles: tuple[int, ...] = (
+        Roles.true_traveler_simp,
+        Roles.true_nahida_simp,
+        Roles.true_tighnari_simp,
+        Roles.true_nahida_guardian,
+        Roles.true_alhaitham_simp,
+        Roles.true_baizhu_simp,
+        Roles.true_xiao_simp,
+        Roles.true_kazuha_simp,
+        Roles.true_venti_simp,
+        Roles.true_jean_simp,
+        Roles.true_wanderer_simp,
+        Roles.true_zhongli_simp,
+        Roles.true_itto_simp,
+        Roles.true_albedo_simp,
+        Roles.true_diluc_simp,
+        Roles.true_hutao_simp,
+        Roles.true_klee_guardian,
+        Roles.true_yoimiya_simp,
+        Roles.true_dehya_simp,
+        Roles.true_nilou_simp,
+        Roles.true_mona_simp,
+        Roles.true_yelan_simp,
+        Roles.true_kokomi_simp,
+        Roles.true_tartaglia_simp,
+        Roles.true_ayato_simp,
+        Roles.true_ganyu_simp,
+        Roles.true_ayaka_simp,
+        Roles.true_eula_simp,
+        Roles.true_shenhe_simp,
+        Roles.true_qiqi_guardian,
+        Roles.true_raiden_simp,
+        Roles.true_yae_simp,
+        Roles.true_keqing_simp,
+        Roles.true_cyno_simp,
+    )
 
 
 Guild = _Guild()
