@@ -194,7 +194,7 @@ class General(commands.Cog):
             embed.add_field(name="warned", value=f'{user["strikes"]} times', inline=True)
 
         await ctx.send(
-            content=f"ℹ About **{(member.nick if member.nick is not None else member.name) if member is not None else 'This Guild'}**",
+            content=f"About **{(member.nick if member.nick is not None else member.name) if member is not None else 'This Guild'}**",
             embed=embed)
 
 
