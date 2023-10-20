@@ -91,7 +91,7 @@ class NianBot(AutoShardedBot):
         else:
             await to_send.send(self.config.join_message)
 
-    def discover_exts(self, directory: str):
+    async def discover_exts(self, directory: str):
         ignore = {'__pycache__', '__init__'}
 
         exts = [
@@ -102,6 +102,6 @@ class NianBot(AutoShardedBot):
         print('Loading extensions: ', exts)
 
         for ext in exts:
-            self.load_extension(f'{directory}.' + ext)
+            await self.load_extension(f'{directory}.' + ext)
 
         self.to_load = list(self.extensions.keys()).copy()

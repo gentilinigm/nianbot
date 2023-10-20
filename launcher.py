@@ -20,7 +20,7 @@ async def main():
         intents=intents
     )
 
-    bot.discover_exts('cogs')
+    await bot.discover_exts('cogs')
     # bot.load_extension('jishaku')
     await bot.start(os.getenv('token'))
 
