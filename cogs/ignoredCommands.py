@@ -19,5 +19,5 @@ class IgnoredCommands(commands.Cog): #qualcosa per farlo ????
         pass
 
 
-def setup(client):
-    client.add_cog(IgnoredCommands(client))
+async def setup(client):
+    await client.add_cog(IgnoredCommands(client))

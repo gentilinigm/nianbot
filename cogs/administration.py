@@ -521,5 +521,5 @@ class Administration(commands.Cog):
         await ctx.send('dms sent successfully')
 
 
-def setup(client):
-    client.add_cog(Administration(client))
+async def setup(client):
+    await client.add_cog(Administration(client))

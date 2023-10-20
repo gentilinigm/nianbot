@@ -72,5 +72,5 @@ class messagesHandler(commands.Cog):
                 await msg.channel.send(random.choice(question.answer if msg.author.id != 310852581385699340 else question.owanswer).format(author=msg.author.nick if msg.author.nick is not None else msg.author.name, emoji='<:FrostLeafLove:685151438040727710>'))
 
 
-def setup(bot):
-    bot.add_cog(messagesHandler(bot))
+async def setup(bot):
+    await bot.add_cog(messagesHandler(bot))

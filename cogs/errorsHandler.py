@@ -70,5 +70,5 @@ class errorsHandler(commands.Cog):
             pass
 
 
-def setup(bot):
-    bot.add_cog(errorsHandler(bot))
+async def setup(bot):
+    await bot.add_cog(errorsHandler(bot))

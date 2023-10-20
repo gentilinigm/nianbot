@@ -73,5 +73,5 @@ class eventsHandler(commands.Cog):
         pass  # using dyno now
 
 
-def setup(bot):
-    bot.add_cog(eventsHandler(bot))
+async def setup(bot):
+    await bot.add_cog(eventsHandler(bot))

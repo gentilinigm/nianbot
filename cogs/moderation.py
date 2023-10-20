@@ -699,7 +699,6 @@ class Moderation(commands.Cog):
             print(e)
             await ctx.send("No records found")
 
-    
-    
-def setup(bot):
-    bot.add_cog(Moderation(bot))
+
+async def setup(bot):
+    await bot.add_cog(Moderation(bot))

@@ -198,5 +198,5 @@ class General(commands.Cog):
             embed=embed)
 
 
-def setup(client):
-    client.add_cog(General(client))
+async def setup(client):
+    await client.add_cog(General(client))
