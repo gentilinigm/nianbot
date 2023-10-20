@@ -2,6 +2,7 @@ import discord
 import re
 import asyncio
 from discord.ext import commands
+from datetime import datetime, timedelta
 from utils import permissions, utils, dataIO
 
 # parts of code took from https://github.com/Rapptz/RoboDanny
@@ -282,21 +283,14 @@ class Moderation(commands.Cog):
         if await permissions.check_priv(ctx, member):
             return
 
-        muted_role = ctx.guild.get_role(691265959302004797)
-
-        if not muted_role:
-            return await ctx.send("Is there a role \'**Black Room**\'?")
-
         if time is not None and not time.isdigit():
             return await ctx.send(f"{time} is not a valid value")
 
         try:
-            await member.add_roles(muted_role, reason=utils.responsible(ctx.author, reason))
+            await member.timeout(datetime.now() + timedelta(hours=int(time)), reason=utils.responsible(ctx.author, reason))
+
             if not no_action_message:
                 await ctx.send(utils.actionmessage("muted", time=time))
-            if time is not None:
-                await asyncio.sleep(int(time) * 3600)
-                await member.remove_roles(muted_role, reason='time expired')
         except Exception as e:
             print(e)
             await ctx.send(f'I don\'t have permission to {ctx.command} {member.nick if member.nick is not None else member.display_name}')
@@ -313,14 +307,9 @@ class Moderation(commands.Cog):
         if await permissions.check_priv(ctx, member):
             return
 
-        muted_role = next((g for g in ctx.guild.roles if g.name == "Black Room"), None)
-
-        if not muted_role:
-            return await ctx.send(
-                "Is there a  role  \'**Black Room**\'?")
-
         try:
-            await member.remove_roles(muted_role, reason=utils.responsible(ctx.author, reason))
+            await member.timeout(None, reason=utils.responsible(ctx.author, reason))
+
             if not no_action_message:
                 await ctx.send(utils.actionmessage("unmuted"))
         except Exception as e:
