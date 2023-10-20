@@ -3,7 +3,6 @@ import itertools
 import discord
 from discord.ext import commands
 from discord.ext.commands import DefaultHelpCommand, HelpCommand, Paginator
-from utils import permissions
 
 # todo better help format
 # todo!important disable help command in the confirmation channel
@@ -60,10 +59,10 @@ class HelpFormat(HelpCommand):
             You can also use `{prefix}{command_name} [category]` for more info on a category.
         """
         command_name = self.invoked_with
-        return "Use `{0}{1} [command]` for more info on a command.\n You can also use `{0}{1} [category]` for more info on a category.".format(self.clean_prefix, command_name)
+        return "Use `{0}{1} [command]` for more info on a command.\n You can also use `{0}{1} [category]` for more info on a category.".format(">", command_name)
 
     def get_command_signature(self, command):
-        return '%s%s %s' % (self.clean_prefix, command.qualified_name, command.signature)
+        return '%s%s %s' % (">", command.qualified_name, command.signature)
 
     def get_ending_note(self):
         """Return the help command's ending note. This is mainly useful to override for i18n purposes.
@@ -100,7 +99,7 @@ class HelpFormat(HelpCommand):
             The command to show information of.
         """
         fmt = '{0}{1} \N{EN DASH} {2}' if command.short_doc else '{0}{1}'
-        self.paginator.add_line(fmt.format(self.clean_prefix, command.qualified_name, command.short_doc))
+        self.paginator.add_line(fmt.format(">", command.qualified_name, command.short_doc))
 
     def add_aliases_formatting(self, aliases):
         """Adds the formatting information on a command's aliases.

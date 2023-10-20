@@ -155,7 +155,7 @@ class General(commands.Cog):
         if member is None:
             embed = discord.Embed(colour=discord.Colour.green())
 
-            embed.set_thumbnail(url=ctx.guild.icon_url)
+            embed.set_thumbnail(url=ctx.guild.icon.url)
             embed.add_field(name="Owner:", value=ctx.guild.owner.name)
             embed.add_field(name="Created at", value=ctx.guild.created_at.date())
             embed.add_field(name="Total messages sent:",
@@ -171,7 +171,7 @@ class General(commands.Cog):
 
             embed = discord.Embed(colour=discord.Colour.green())
 
-            embed.set_thumbnail(url=ctx.bot.user.avatar_url)
+            embed.set_thumbnail(url=ctx.bot.user.avatar.url)
             embed.add_field(name="Last boot", value=utils.timeago(datetime.now() - self.bot.uptime), inline=True)
             embed.add_field(name="Commands loaded", value=str(len([x.name for x in self.bot.commands])), inline=True)
             embed.add_field(name="RAM", value=f"{ramUsage:.2f} MB", inline=True)
@@ -185,7 +185,7 @@ class General(commands.Cog):
                 
             embed = discord.Embed(colour=discord.Colour.red())
             user = self.bot.ww.dbh.get_document_by_id("users", member.id)
-            embed.set_thumbnail(url=member.avatar_url)
+            embed.set_thumbnail(url=member.avatar.url)
             embed.add_field(name="id", value=member.id, inline=True)
             embed.add_field(name="username", value=member.name, inline=True)
             embed.add_field(name="joined at", value=user["joined_at"].date(), inline=True)
