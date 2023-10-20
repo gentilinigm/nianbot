@@ -49,11 +49,10 @@ class eventsHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
-        muted_role = after.guild.get_role(691265959302004797)
 
-        if muted_role in after.roles and muted_role not in before.roles:
+        if before.timed_out_until is None and after.timed_out_until is not None:
             await self.bot.log_channel.send(f'```❗{after} HAS BEEN MUTED```')
-        elif muted_role in before.roles and muted_role not in after.roles:
+        elif before.timed_out_until is not None and after.timed_out_until is None:
             await self.bot.log_channel.send(f'```❗{after} HAS BEEN UNMUTED```')
 
         if before.nick != after.nick:
