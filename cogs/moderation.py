@@ -287,7 +287,7 @@ class Moderation(commands.Cog):
             return await ctx.send(f"{time} is not a valid value")
 
         try:
-            await member.timeout((datetime.now() + timedelta(hours=int(time))), reason=utils.responsible(ctx.author, reason))
+            await member.timeout(timedelta(hours=int(time)), reason=utils.responsible(ctx.author, reason))
 
             if not no_action_message:
                 await ctx.send(utils.actionmessage("muted", time=time))
