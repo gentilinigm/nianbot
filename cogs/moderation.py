@@ -215,11 +215,15 @@ class Moderation(commands.Cog):
     @permissions.is_mod()
     async def ban(self, ctx, member: MemberID, *, reason: str = None, no_action_message:bool = False):
         m = ctx.guild.get_member(member)
-        if m is not None and await permissions.check_priv(ctx, m):
+
+        if m is None:
+            await ctx.send(f'{member} not found')
+
+        if await permissions.check_priv(ctx, m):
             return
 
         try:
-            await ctx.guild.ban(discord.Object(id=member), reason=utils.responsible(ctx.author, reason))
+            await m.ban(reason=utils.responsible(ctx.author, reason))
             if not no_action_message:
                 await ctx.send(utils.actionmessage("banned"))
         except Exception as e:
