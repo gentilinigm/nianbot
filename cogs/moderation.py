@@ -62,12 +62,12 @@ class Moderation(commands.Cog):
         
         try:
             if user["strikes"] == 1:
-                await self.bot.log_channel.send(f'```❗{member.display_name} HAS BEEN WARNED ONCE```')
+                await self.bot.log_channel.send(f'```❗{member.name} HAS BEEN WARNED ONCE```')
                 await self.unmute(ctx, member=member, no_action_message=True)
                 await ctx.send(utils.actionmessage("warned"))
                 await member.send(f'This is the first time that you get warned, next time you\'ll be muted') if reason is None or len(reason) < 1 else await member.send("WARN:\n" + reason)
             if user["strikes"] == 2:
-                await self.bot.log_channel.send(f'```❗{member.display_name} HAS BEEN WARNED TWICE```')
+                await self.bot.log_channel.send(f'```❗{member.name} HAS BEEN WARNED TWICE```')
                 await ctx.send(utils.actionmessage("warned"))
                 await asyncio.gather(
                     self.mute(ctx, member=member, time=str(5), reason=reason or "warned 2 times", no_action_message=True),
@@ -75,7 +75,7 @@ class Moderation(commands.Cog):
                                 f'next time you may be **banned!!** for ever. ') if reason is None or len(reason) < 1 else member.send("WARN:\n" + reason)
                 )
             if user["strikes"] == 3:
-                await self.bot.log_channel.send(f'```❗{member.display_name} HAS BEEN WARNED 3 TIMES```')
+                await self.bot.log_channel.send(f'```❗{member.name} HAS BEEN WARNED 3 TIMES```')
                 await self.ban(ctx, member=member.id, reason=reason or "warned 3 times", no_action_message=True)
                 await ctx.send(utils.actionmessage("warned"))
                 await member.send(f'This is the third time that you get warned, you are banned from the server\n'
@@ -83,7 +83,7 @@ class Moderation(commands.Cog):
         except discord.HTTPException:            
             raise Exception('Could not send dm to the user, but **warned** anyway kekw')
         except discord.Forbidden:
-            raise Exception(f'I don\'t have permission to ban {member.nick if member.nick is not None else member.display_name}')
+            raise Exception(f'I don\'t have permission to ban {member.nick if member.nick is not None else member.name}')
         except Exception as e:
             raise Exception(f'error while trying to warn the user\n{str(e)}\nuser may have been wanred anyway please check')
 
