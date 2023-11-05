@@ -4,9 +4,9 @@
     "question": [
       {
         "text": [
-          "hello lapluma",
-          "hi lapluma",
-          "hey lapluma"
+          "hello arturia",
+          "hi arturia",
+          "hey arturia"
         ],
         "answer": [
           "hey {author}",
