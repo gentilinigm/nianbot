@@ -2,7 +2,7 @@
 name = "nianbot"
 version = "2.0.0"
 description = "The Discord Bot for the KyoStinV official Discord Server."
-authors = ["gian <@0xgian"]
+authors = ["gian <@0xgian>"]
 
 [tool.poetry.dependencies]
 python = "3.10.*"
@@ -53,7 +53,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.taskipy.tasks]
-start = "python -m bot"
+start = "python -m nianbot"
 lint = "pre-commit run --all-files"
 precommit = "pre-commit install"
 build = "docker build -t ghcr.io/gentilinigm/nianbot:latest -f Dockerfile ."
@@ -67,7 +67,7 @@ isort = "isort ."
 
 [tool.coverage.run]
 branch = true
-source_pkgs = ["bot"]
+source_pkgs = ["nianbot"]
 source = ["tests"]
 
 [tool.isort]

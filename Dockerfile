@@ -7,7 +7,7 @@ RUN apt-get update && \
 RUN pip install poetry
 
 # Install project dependencies
-WORKDIR /bot
+WORKDIR /nianbot
 COPY pyproject.toml poetry.lock ./
 RUN poetry install --without dev
 
@@ -15,4 +15,4 @@ RUN poetry install --without dev
 COPY . .
 
 ENTRYPOINT ["poetry"]
-CMD ["run", "python", "-m", "bot"]
+CMD ["run", "python", "-m", "nianbot"]

@@ -10,4 +10,4 @@ guild:
   invite:   "https://discord.gg/kyostinv"
 
 config:
-    required_keys: ["bot.token"]
+    required_keys: ["nianbot.token"]

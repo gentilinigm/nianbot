@@ -30,14 +30,14 @@ services:
       timeout: 5s
       retries: 5
 
-  bot:
+  nianbot:
     logging: *default-logging
     restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/bot:ro
+      - .:/nianbot:ro
     tty: true
     depends_on:
       - postgres

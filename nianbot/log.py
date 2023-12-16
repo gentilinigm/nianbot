@@ -6,7 +6,7 @@ from pathlib import Path
 
 import coloredlogs
 
-from bot import constants
+from nianbot import constants
 
 TRACE_LEVEL = 5
 
@@ -19,7 +19,7 @@ def setup() -> None:
     formatter = logging.Formatter(format_string)
 
     if constants.FILE_LOGS:
-        log_file = Path("logs", "bot.log")
+        log_file = Path("logs", "nianbot.log")
         log_file.parent.mkdir(exist_ok=True)
         file_handler = handlers.RotatingFileHandler(log_file, maxBytes=5242880, backupCount=7, encoding="utf8")
         file_handler.setFormatter(formatter)

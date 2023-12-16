@@ -11,7 +11,7 @@ from functools import partial
 
 from discord.errors import Forbidden
 
-from bot.utils.error_handling import handle_forbidden_from_block
+from nianbot.utils.error_handling import handle_forbidden_from_block
 
 """
 MIT License.

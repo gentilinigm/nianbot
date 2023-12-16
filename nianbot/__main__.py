@@ -8,9 +8,9 @@ from discord.ext import commands
 from psycopg2 import DatabaseError
 from psycopg2.extensions import connection
 
-import bot
-from bot import constants
-from bot.bot import Bot, StartupError
+import nianbot
+from nianbot import constants
+from nianbot.bot import Bot, StartupError
 
 
 async def _create_db_connection() -> connection:
@@ -29,12 +29,12 @@ async def _create_db_connection() -> connection:
 
 
 async def main() -> None:
-    """Entry async method for starting the bot."""
+    """Entry async method for starting the nianbot."""
     intents = discord.Intents.all()
     intents.presences = False
 
     async with aiohttp.ClientSession() as session:
-        bot.instance = Bot(
+        nianbot.instance = Bot(
             guild_id=constants.Guild.id,
             http_session=session,
             db_connection=await _create_db_connection(),
@@ -43,7 +43,7 @@ async def main() -> None:
             case_insensitive=True,
             intents=intents,
         )
-    async with bot.instance as _bot:
+    async with nianbot.instance as _bot:
         await _bot.start(constants.Bot.token)
 
 

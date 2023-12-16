@@ -36,17 +36,17 @@ async def handle_forbidden_from_block(error: Forbidden, message: Message | None 
         message: The message to reply to and include in logs, if error is 90001 and message is provided.
     """
     if error.code != 90001:
-        # The error ISN'T caused by the bot attempting to add a reaction
-        # to a message whose author has blocked the bot, so re-raise it
+        # The error ISN'T caused by the nianbot attempting to add a reaction
+        # to a message whose author has blocked the nianbot, so re-raise it
         raise error
 
     if not message:
-        logging.info("Failed to add reaction(s) to a message since the message author has blocked the bot")
+        logging.info("Failed to add reaction(s) to a message since the message author has blocked the nianbot")
         return
 
     if message:
         logging.info(
-            "Failed to add reaction(s) to message %d-%d since the message author (%d) has blocked the bot",
+            "Failed to add reaction(s) to message %d-%d since the message author (%d) has blocked the nianbot",
             message.channel.id,
             message.id,
             message.author.id,

@@ -5,9 +5,9 @@ import discord
 from discord import Colour, Embed, Guild, Interaction, app_commands
 from discord.ext.commands import GroupCog, command
 
-from bot import constants
-from bot.bot import Bot
-from bot.errors import NonExistentRoleError
+from nianbot import constants
+from nianbot.bot import Bot
+from nianbot.errors import NonExistentRoleError
 
 
 class Information(GroupCog, group_name="info", group_description="information about guild and members"):

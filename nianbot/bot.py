@@ -8,9 +8,9 @@ import discord
 from discord.ext import commands
 from psycopg2.extensions import connection
 
-from bot import exts
-from bot.utils.extensions import walk_extensions
-from bot.utils.scheduling import create_task
+from nianbot import exts
+from nianbot.utils.extensions import walk_extensions
+from nianbot.utils.scheduling import create_task
 
 
 class StartupError(Exception):
@@ -22,7 +22,7 @@ class StartupError(Exception):
 
 
 class Bot(commands.Bot):
-    """A bot subclass that implements some features."""
+    """A nianbot subclass that implements some features."""
 
     def __init__(
             self,
@@ -33,7 +33,7 @@ class Bot(commands.Bot):
             **kwargs
     ):
         """
-        Initialise the base bot instance.
+        Initialise the base nianbot instance.
 
         Args:
             guild_id: The ID of the KyoStinV guild.
